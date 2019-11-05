@@ -48,7 +48,7 @@ class InteractiveRecord
     self.class.column_names.delete_if {|col| col == "id"}.join(", ")
   end
   
-  def find_by(attribute)
+  def self.find_by(attribute)
     column_name = attribute.keys[0].to_s
     value_name = attribute.values[0]
 
@@ -59,6 +59,8 @@ class InteractiveRecord
   
   def self.find_by_name(name)
     find_by(name)
+    #sql = "SELECT * FROM #{self.table_name} WHERE name = ?"
+    #DB[:conn].execute(sql, name)
   end
   
 end
